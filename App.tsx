@@ -1,22 +1,93 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import { useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View ,SafeAreaView, TouchableOpacity} from 'react-native';
 import Card from './src/layouts/Card/Index';
 import Auth from './src/layouts/Auth/Index';
+// import {AppRoutes as AuthStack} from '@navigations'
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { FloatingLabelInput } from 'react-native-floating-label-input';
 
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'PoppinsMedium': require('./assets/fonts/Poppins/Poppins-Medium.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
+<SafeAreaView onLayout={onLayoutRootView} style={{flex:1, justifyContent:'center'}}>
+<StatusBar
+      translucent
+      style="light"
+    />
+      <Auth bottomTitle='Already Have An Account ?' bottomTitlepressablePart='Login'>
+    <View style={{marginVertical:5}}>
 
-      <Auth bottomTitle='Not Registered' bottomTitlepressablePart='Login'>
-        <View style={{height: 200}}>
+     <FloatingLabelInput
+     label='User Name'
+     
+     labelStyles={{backgroundColor:'white'}}
+     style={{borderWidth:2,borderColor:'#407BE2'}}
+     />
+    </View>
+    <View style={{marginVertical:5}}>
 
-      <Text>Hey Hamza </Text>
-      <Text>How Are You </Text>
-      <Text>Hy </Text>
-        </View>
+     <FloatingLabelInput
+     label='Email'
+     
+     labelStyles={{backgroundColor:'white'}}
+     style={{borderWidth:2,borderColor:'#407BE2'}}
+     />
+    </View>
+    <View style={{marginVertical:5}}>
+
+     <FloatingLabelInput
+     label='Password'
+     
+     labelStyles={{backgroundColor:'white'}}
+     style={{borderWidth:2,borderColor:'#407BE2'}}
+     />
+    </View>
+    <View style={{marginVertical:5}}>
+
+     <FloatingLabelInput
+     label='Confirm Password'
+     
+     labelStyles={{backgroundColor:'white'}}
+     style={{borderWidth:2,borderColor:'#407BE2'}}
+     />
+    </View>
+    <View style={{marginVertical:5}}>
+
+    <TouchableOpacity
+    style={{width:265,backgroundColor:'#407BE2',justifyContent:'center',alignItems:'center', height:55,borderRadius:12}}
+    >
+      <Text style={{color:'white'}}>Create Account</Text>
+    </TouchableOpacity>
+    </View>
+   
+    
+    
+  
+      
+      
+      
+      
+      
       </Auth>
+     
+</SafeAreaView>
    
      
    

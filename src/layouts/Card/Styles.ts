@@ -9,8 +9,8 @@ const styles= StyleSheet.create({
         alignSelf:'center',
         elevation: 10,
         justifyContent:'space-evenly',
-        paddingHorizontal: getWidth(5),
-        paddingVertical: getHeight(5),
+        // paddingHorizontal: getWidth(5),
+        // paddingVertical: getHeight(5),
         backgroundColor: theme.background.secondary,
         shadowColor: 'gray',
         borderRadius: 20
