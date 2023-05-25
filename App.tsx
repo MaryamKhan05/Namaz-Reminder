@@ -7,6 +7,8 @@ import Auth from './src/layouts/Auth/Index';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
+import { NavigationContainer } from '@react-navigation/native';
+import { AuthStack } from './src/navigations';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,7 +33,7 @@ export default function App() {
       translucent
       style="light"
     />
-      <Auth bottomTitle='Already Have An Account ?' bottomTitlepressablePart='Login'>
+      {/* <Auth bottomTitle='Already Have An Account ?' bottomTitlepressablePart='Login'>
     <View style={{marginVertical:5}}>
 
      <FloatingLabelInput
@@ -85,7 +87,10 @@ export default function App() {
       
       
       
-      </Auth>
+      </Auth> */}
+      <NavigationContainer>
+        <AuthStack/>
+      </NavigationContainer>
      
 </SafeAreaView>
    

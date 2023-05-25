@@ -21,7 +21,9 @@ type ScreenParams={
 
 const AuthStack:React.FC=()=>{
 return(
-    <stack.Navigator>
+    <stack.Navigator
+    screenOptions={{headerShown:false}}
+    >
         <stack.Screen 
         name="LoginScreen"
         component={LoginScreen}

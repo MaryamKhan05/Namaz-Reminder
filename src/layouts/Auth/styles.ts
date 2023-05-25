@@ -31,13 +31,22 @@ alignSelf:'center'
     bottom:hp(2),
     alignItems:'flex-end',
   },
+  
   card:{
     borderRadius:20,
     backgroundColor:'white',
     marginHorizontal:hp(3),
     elevation:10,
     shadowColor:'gray',
-    padding:hp(5)
+    paddingVertical:hp(2),
+    paddingHorizontal:hp(4)
+},
+cardTitleStyles:{
+  marginVertical:hp(3),
+fontSize:20,
+color:theme.button.Blue,
+textTransform:'capitalize'
+
 },
 text:{
     fontFamily: 'PoppinsMedium',
