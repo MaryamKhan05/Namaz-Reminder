@@ -1,32 +1,23 @@
-import React from "react";
+/** @format */
 
+import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import {
-    AuthStack,
-    HomeDrawer
-   
-} from '@navigations'
-const stack = createNativeStackNavigator()
+import { AuthStack, HomeDrawer } from "@navigations";
+const stack = createNativeStackNavigator();
 
-
-
-const AppRoutes:React.FC=()=>{
-return(
+const AppRoutes: React.FC = () => {
+  return (
     <stack.Navigator>
-       
-  
-        <stack.Screen 
+      <stack.Screen
         component={HomeDrawer}
         name="HomeDrawer"
-        />
-        <stack.Screen 
-        component={AuthStack}
-        name="AuthStack"
-        />
+        options={{ headerShown: false }}
+      />
+      <stack.Screen component={AuthStack} name="AuthStack" />
     </stack.Navigator>
-)
-}
+  );
+};
 
-export default AppRoutes
+export default AppRoutes;

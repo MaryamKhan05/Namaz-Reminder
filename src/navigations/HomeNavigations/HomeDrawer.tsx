@@ -1,29 +1,24 @@
+/** @format */
+
 import React from "react";
-
-
-
-
-import {
-   HomeScreen
-} from '@screens'
+import { HomeScreen } from "@screens";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-const drawer = createDrawerNavigator()
+const drawer = createDrawerNavigator();
 
-type ScreenParams={
-    HomeScreen: string|undefined
-   
-}
+type ScreenParams = {
+  HomeScreen: string | undefined;
+};
 
-const AuthStack:React.FC=()=>{
-return(
+const AuthStack: React.FC = () => {
+  return (
     <drawer.Navigator>
-        <drawer.Screen 
+      <drawer.Screen
         name="HomeScreen"
         component={HomeScreen}
-        />
-       
+        options={{ headerShown: false }}
+      />
     </drawer.Navigator>
-)
-}
+  );
+};
 
-export default AuthStack
+export default AuthStack;
