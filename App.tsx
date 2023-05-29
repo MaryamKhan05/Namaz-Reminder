@@ -24,8 +24,8 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [fontsLoaded] = useFonts({
     PoppinsMedium: require("./assets/fonts/Poppins/Poppins-Medium.ttf"),
+    FuturaBookBT: require("./assets/font/fonts/FuturaBookBT.ttf"),
     FuturaMediumBT: require("./assets/font/fonts/FuturaMediumBT.ttf"),
-    // FuturaBookBT: require("./assets/font/fonts/FuturaBookBT.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {

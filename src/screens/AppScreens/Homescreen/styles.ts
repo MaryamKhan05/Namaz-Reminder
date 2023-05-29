@@ -20,12 +20,11 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   headerView: {
-    // backgroundColor: 'yellow',
     marginVertical: getHeight(6),
     width: getWidth(90),
     alignSelf: "center",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
   },
   textView: {
     height: getHeight(5),
@@ -73,8 +72,8 @@ const styles = StyleSheet.create({
     marginHorizontal: getWidth(2),
   },
   iconImage: {
-    resizeMode: "center",
-    width: getWidth(8),
+    resizeMode: "contain",
+    width: getWidth(5),
     height: getHeight(4),
   },
   namazText: {
@@ -88,6 +87,14 @@ const styles = StyleSheet.create({
     color: theme.buttonText.Medium_White,
     fontWeight: "400",
     fontSize: 14,
+  },
+  timeLeftView: {
+    backgroundColor: theme.background.primary,
+    width: getWidth(30),
+    alignContent: "center",
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 export default styles;
