@@ -98,16 +98,6 @@ const HomeDrawer = () => {
           ),
         }}
       />
-      <Drawer.Screen
-        name="Set Location"
-        component={SetLocation}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused, color, size }) => (
-            <Image source={images.setLocation} style={styles.imageStyle} />
-          ),
-        }}
-      />
     </Drawer.Navigator>
   );
 };

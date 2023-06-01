@@ -13,6 +13,8 @@ export const images: any = {
   setting: require("./icons/Setting.png"),
   silent: require("./icons/Silent.png"),
   user: require("./icons/user.png"),
+  on:require("./icons/on.png"),
+  off:require("./icons/off.png"),
 };
 ////////////////////////////////Fonts////////////////////////////
 

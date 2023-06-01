@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     color: theme.text.White,
     fontSize: 16,
     fontFamily: "FuturaBookBT",
-    fontWeight: "400",
+    fontWeight: "500",
   },
   iconView: {
     flexDirection: "row",
@@ -96,5 +96,78 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  cardContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  prayerCard: {
+    width: getWidth(2),
+    // height:getHeight(9),
+
+    // marginBottom: 10,
+    padding: getWidth(1),
+    
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+    // borderRadius: 20,
+  },
+  prayerName: {
+    fontSize: 16,
+    fontWeight: "bold",
+    fontFamily:'FuturaMediumBT',
+    // marginBottom: 5,
+    // color: '#fff',
+    color: theme.text.Medium_Black,
+  },
+  prayerTime: {
+    fontSize: 16,
+    // color: '#fff',
+    color: theme.text.Medium_Black,
+  },
+  strikeThrough: {
+    textDecorationLine: "line-through",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    // backgroundColor:'red',
+    width: getWidth("70"),
+    alignSelf: "center",
+    margin:getWidth(3),
+  },
+  calendarContainer: {
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  // stripContainer: {
+  //   flexDirection: 'row',
+  // },
+  // stripDateContainer: {
+  //   alignItems: 'center',
+  //   marginRight: 10,
+  //   paddingHorizontal: 10,
+  //   paddingVertical: 5,
+  //   borderRadius: 10,
+  //   borderWidth: 1,
+  //   borderColor: 'red',
+  // },
+  // selectedDateContainer: {
+  //   backgroundColor: 'PINK',
+  // },
+  // stripDateText: {
+  //   fontSize: 18,
+  //   fontWeight: 'bold',
+  //   color:'pink'
+  // },
+  
+  // stripDayText: {
+  //   fontSize: 14,
+  //   color: 'red',
+  //   backgroundColor:'red'
+  // },
+  
 });
 export default styles;

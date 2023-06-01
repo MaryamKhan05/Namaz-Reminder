@@ -42,7 +42,7 @@ const HomeScreenHeaderComponent: FC<HomeScreenHeaderProps> = ({ children }) => {
 const styles = StyleSheet.create({
   container: {
     width: getWidth(100),
-    height: getHeight(35),
+    height: getHeight(32),
   },
   borderView: {
     position: "absolute",

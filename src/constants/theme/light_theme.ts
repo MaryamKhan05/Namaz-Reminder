@@ -1,7 +1,7 @@
 const BLACK = 'rgba(0, 0, 0, 0.87)';
 const MEDIUM_BLACK = 'rgba(0, 0, 0, 0.57)';
 const LOW_BLACK = 'rgba(0, 0, 0, 0.38)';
-const Blue = '#407BE2';
+const BLUE = '#407BE2';
 const LOW_White = 'rgba(255, 255, 255, 0.37)';
 const MEDIUM_White = 'rgba(255, 255, 255, 0.57)';
 const WHITE = 'rgba(255, 255, 255, 0.87)';
@@ -12,16 +12,18 @@ export default {
   background: {
     primary: BACKGROUND,
     secondary: WHITE,
+    Blue: BLUE,
+   
   },
   button: {
     success: '#0CCA08',
     White: WHITE,
     Gray: Gray,
-    Blue: Blue,
+    Blue: BLUE,
   },
   buttonText: {
     Black: BLACK,
-    Blue: Blue,
+    Blue: BLUE,
     White: WHITE,
     Medium_White: MEDIUM_White,
   },
@@ -48,5 +50,5 @@ export default {
     Maghrib: '#A9FFDB',
     Isha: '#A9EAFF',
   },
-  loader: Blue,
+  loader: BLUE,
 };
