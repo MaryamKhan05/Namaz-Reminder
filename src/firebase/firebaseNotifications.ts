@@ -18,5 +18,5 @@ export const registerForPushNotificationsAsync = async () => {
     console.log('Push token:', token);
     // Save the token to your backend or Firebase Realtime Database for sending notifications later
   };
-
+    
   
