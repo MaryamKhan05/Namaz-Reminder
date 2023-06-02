@@ -12,6 +12,7 @@ import { HomeScreen, PrayerSilentMode, ReminderSetting } from "@screens";
 import { images } from "@assets";
 import { AppliedTheme } from "@constants";
 import { getHeight, getWidth } from "@helpers";
+import { handleSignOut } from "../../firebase/firebaseAuth";
 const theme = AppliedTheme();
 const Drawer = createDrawerNavigator();
 function SetLocation() {
@@ -29,10 +30,10 @@ const CustomDrawerContent = (props) => {
           source={images.user}
           style={{ width: 80, height: 80, borderRadius: 10 }}
         />
-        <Text style={styles.ProfileText}>Nouman Imran</Text>
+        <Text style={styles.ProfileText}>Maryam Khan</Text>
       </View>
       <DrawerItemList {...props} />
-      <TouchableOpacity onPress={() => alert("LogOut")}>
+      <TouchableOpacity onPress={() => handleSignOut()}>
         <View style={styles.logoutBtnView}>
           <Image
             source={images.logout}

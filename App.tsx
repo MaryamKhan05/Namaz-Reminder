@@ -1,6 +1,6 @@
 /** @format */
 
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   Image,
@@ -10,18 +10,27 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import Card from "./src/layouts/Card/Index";
-// import Auth from './src/layouts/Auth/Index';
-import { AppRoutes as AuthStack } from "@navigations";
+import * as Notifications from 'expo-notifications';
+import { AppRoutes } from "@navigations";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { FloatingLabelInput } from "react-native-floating-label-input";
 import { NavigationContainer } from "@react-navigation/native";
+// import { registerForPushNotificationsAsync } from "./src/firebase/firebaseNotifications";
 // import { AuthStack } from './src/navigations';
 
 SplashScreen.preventAutoHideAsync();
-
 export default function App() {
+  // useEffect(() => {
+  //   registerForPushNotificationsAsync();
+  //   Notifications.setNotificationHandler({
+  //     handleNotification: async () => ({
+  //       shouldShowAlert: true,
+  //       shouldPlaySound: false,
+  //       shouldSetBadge: false,
+  //     }),
+  //   });
+  // }, []);
   const [fontsLoaded] = useFonts({
     PoppinsMedium: require("./assets/fonts/Poppins/Poppins-Medium.ttf"),
     FuturaBookBT: require("./assets/font/fonts/FuturaBookBT.ttf"),
@@ -100,7 +109,8 @@ export default function App() {
       
       </Auth> */}
       <NavigationContainer>
-        <AuthStack />
+        <AppRoutes />
+        {/* <LoginScreen/> */}
       </NavigationContainer>
     </SafeAreaView>
   );
