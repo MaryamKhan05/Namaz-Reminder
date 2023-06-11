@@ -1,18 +1,29 @@
 /** @format */
 
-import { FC, useEffect, useState } from "react";
-import { View, Text, Image, Pressable, FlatList } from "react-native";
+import { FC, useContext, useEffect, useState } from "react";
+import { View, Text, Image, Pressable, FlatList, ActivityIndicator } from "react-native";
 import styles from "./styles";
 import { HomeScreenHeaderComponent, NamazCard, Calendar } from "@components";
 import { images } from "@assets";
 import { getWidth, getHeight } from "@helpers";
 import { AppliedTheme } from "@constants";
 import { Card } from '@layouts';
-
+// import LocationConfig from "../../../location/locationConfig";
+import { LocationContext } from "../../../location/locationContext";
+import { AuthContext } from "../../../Authentication/AuthContext";
+import { fetchPrayerTimes } from "../../../api/prayerTimesApi";
+import NamazTimings from "../../../components/NamazTimings";
 const theme = AppliedTheme();
 
 
 const HomeScreen: FC = () => {
+  const { locationData } = useContext(LocationContext)
+  const { city, errorMsg } = locationData
+  const { user, signOut } = useContext(AuthContext)
+  const [loading, setLoading] = useState(true)
+
+  const [prayer, setPrayer] = useState([])
+
 
   const prayerTimes: PrayerTime[] = [
     { id: 1, name: 'Fajr', time: '5:00 AM' },
@@ -29,47 +40,96 @@ const HomeScreen: FC = () => {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      const year = new Date().getFullYear();
+      const month = new Date().getMonth() + 1;
+      const times = await fetchPrayerTimes(year, month);
+      setPrayer(times);
+      console.log('prayer data', prayer)
+      setLoading(false)
+    };
+    // console.log('prayer time are', prayerTimes.Fajr)
 
-  }, [])
+    fetchData();
+  }, []);
+  // const renderItem = ({ item }) => {
+  //   alert('in flatlist')
+  //   // const prayerTime = new Date();
+  //   // const [prayerHours, prayerMinutes, prayerAmOrPm] = item.time.split(/:| /);
+  //   // prayerTime.setHours(Number(prayerHours) + (prayerAmOrPm === 'PM' ? 12 : 0));
+  //   // prayerTime.setMinutes(Number(prayerMinutes));
+
+  //   // const isPastPrayerTime = prayerTime.getTime() < currentTime.getTime();
+  //   return (
+  //     // <View
+  //     //   style={{
+  //     //     flexDirection: 'row',
+  //     //     backgroundColor: 'white',
+  //     //     marginVertical: 8,
+  //     //     width: getWidth(90),
+  //     //     alignSelf: 'center',
+  //     //     borderRadius: 10
+  //     //   }}
+  //     // >
+  //     //   <View
+  //     //     style={[
+  //     //       styles.prayerCard,
+  //     //       { backgroundColor: generateRandomColor(), },
+  //     //     ]} />
+  //     //   <View
+  //     //     style={[styles.row, { paddingVertical: 10 }]}
+  //     //   >
+  //     //     <Text style={[styles.prayerName, isPastPrayerTime && styles.strikeThrough]}>{item}</Text>
+  //     //     <Text
+  //     //       style={[styles.prayerTime, isPastPrayerTime && styles.strikeThrough]}
+  //     //     >
+  //     //       {item.time}
+  //     //     </Text>
+  //     //   </View>
+  //     // </View>
+  //     <Text>hello</Text>
+
+  //   )
+  // }
+
+
+
+
 
   const renderItem = ({ item }) => {
-    const prayerTime = new Date();
-    const [prayerHours, prayerMinutes, prayerAmOrPm] = item.time.split(/:| /);
-    prayerTime.setHours(Number(prayerHours) + (prayerAmOrPm === 'PM' ? 12 : 0));
-    prayerTime.setMinutes(Number(prayerMinutes));
+    // alert('hello list')
+    // const prayerData = Object.entries(item); // Convert object to array of key-value pairs
 
-    const isPastPrayerTime = prayerTime.getTime() < currentTime.getTime();
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-          backgroundColor: 'white',
-          marginVertical: 8,
-          width: getWidth(90),
-          alignSelf: 'center',
-          borderRadius: 10
-        }}
-      >
+      <View>
+        {/* {prayerData.map(([prayerName, prayerTime]) => ( */}
         <View
-          style={[
-            styles.prayerCard,
-            { backgroundColor: generateRandomColor(), },
-          ]} />
-        <View
-          style={[styles.row, { paddingVertical: 10 }]}
+          // key={prayerName}
+          style={{
+            flexDirection: 'row',
+            backgroundColor: 'white',
+            marginVertical: 8,
+            width: getWidth(90),
+            alignSelf: 'center',
+            borderRadius: 10
+          }}
         >
-          <Text style={[styles.prayerName, isPastPrayerTime && styles.strikeThrough]}>{item.name}</Text>
-          <Text
-            style={[styles.prayerTime, isPastPrayerTime && styles.strikeThrough]}
-          >
-            {item.time}
-          </Text>
+          <View
+            style={[
+              styles.prayerCard,
+              { backgroundColor: generateRandomColor() },
+            ]}
+          />
+          <View style={[styles.row, { paddingVertical: 10 }]}>
+            <Text style={styles.prayerName}>{item.name}</Text>
+            <Text style={styles.prayerTime}>{item.time}</Text>
+          </View>
         </View>
+        {/* ))} */}
       </View>
+    );
+  };
 
-
-    )
-  }
   const ItemSeparatorComponent = () => {
     return (
       <View
@@ -167,17 +227,36 @@ const HomeScreen: FC = () => {
             marginTop: getHeight(0.4)
           }}
         >
-
-          <FlatList
-            data={prayerTimes}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            ItemSeparatorComponent={ItemSeparatorComponent}
-          />
+          {loading ?
+            (
+              <ActivityIndicator color={'blue'} size={'large'} />
+            ) : (
+              <FlatList
+                data={prayerTimes}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id}
+                ItemSeparatorComponent={ItemSeparatorComponent}
+              />
+            )
+          }
+          {/* <Text>{JSON.stringify(prayer)}</Text> */}
+          {/* <NamazTimings /> */}
         </View>
 
       </View>
     </View>
+
+
+
+
+    //  <View>
+    //   <Text>City: {city}</Text>
+    // </View>
+
+    // <View>
+    //   <Text>Welcome, {user.email}</Text>
+    // </View>
+
   );
 };
 export default HomeScreen;

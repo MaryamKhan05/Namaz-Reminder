@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Auth } from '@layouts'
 import { FloatingLabelInput } from 'react-native-floating-label-input'
 import { TextInput, Button } from '@components'
-import { handleSignIn,handleSignUp } from '../../../firebase/firebaseAuth'
-
+// import { handleSignIn,handleSignUp } from '../../../firebase/firebaseAuth'
+import { AuthContext } from '../../../Authentication/AuthContext'
 const LoginScreen: React.FC = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const {signIn}= useContext(AuthContext)
     return (
         <View style={{ flex: 1, justifyContent: 'center' }}>
             <Auth cardTitle='Login' bottomTitle='Not Have An Account ?' bottomTitlepressablePart='Create New'>
@@ -38,7 +39,8 @@ const LoginScreen: React.FC = () => {
                 <Button
                     title='Login'
                     // onPress={() => { alert('Pressed') }}
-                    onPress={() => handleSignIn(email, password)}
+                    // onPress={() => handleSignIn(email, password)}
+                    onPress={()=> signIn(email, password)}
                 />
 
 

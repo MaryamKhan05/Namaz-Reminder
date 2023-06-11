@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -13,6 +13,7 @@ import { images } from "@assets";
 import { AppliedTheme } from "@constants";
 import { getHeight, getWidth } from "@helpers";
 import { handleSignOut } from "../../firebase/firebaseAuth";
+import { AuthContext } from "../../Authentication/AuthContext";
 const theme = AppliedTheme();
 const Drawer = createDrawerNavigator();
 function SetLocation() {
@@ -23,6 +24,7 @@ function SetLocation() {
   );
 }
 const CustomDrawerContent = (props) => {
+  const {signOut}=useContext(AuthContext)
   return (
     <DrawerContentScrollView {...props}>
       <View style={{ alignItems: "center", marginTop: "30%" }}>
@@ -33,7 +35,7 @@ const CustomDrawerContent = (props) => {
         <Text style={styles.ProfileText}>Maryam Khan</Text>
       </View>
       <DrawerItemList {...props} />
-      <TouchableOpacity onPress={() => handleSignOut()}>
+      <TouchableOpacity onPress={() => signOut()}>
         <View style={styles.logoutBtnView}>
           <Image
             source={images.logout}
@@ -46,6 +48,7 @@ const CustomDrawerContent = (props) => {
   );
 };
 const HomeDrawer = () => {
+ 
   return (
     <Drawer.Navigator
       screenOptions={{

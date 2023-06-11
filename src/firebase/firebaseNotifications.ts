@@ -4,7 +4,6 @@ import { getDatabase, ref, set } from "firebase/database";
 
 const db = getDatabase();
 
-
 export const registerForPushNotificationsAsync = async () => {
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
   let finalStatus = existingStatus;
@@ -16,10 +15,10 @@ export const registerForPushNotificationsAsync = async () => {
     console.log("Failed to get push token for push notifications!");
     return;
   }
-  const token = (await Notifications.getDevicePushTokenAsync()).data;
+  const token = (await Notifications.getExpoPushTokenAsync()).data;
 
   const tokenRef = ref(db, "Push");
-
+//   console.log(token);
   set(tokenRef, { token });
   console.log("push token saved to firebase realtime db");
 };
